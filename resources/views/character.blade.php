@@ -13,23 +13,23 @@
         </div>
     </div>
     <div class="col-4">
-        <div class="avatar" style="background: #e3e3e3;">
+        <div class="avatar" style="background: #{{ $character->houses[0]->colour }};">
             <img src="/assets/img/{{ $character->image }}" alt="Catelyn">
         </div>
         <div class="infos">
             <h3>Maisons</h3>
+
             <div class="houses">
                 <ul>
                     @foreach( $character->houses as $house )
 
-                    <li class="house-logo" style="background: #e3e3e3;">
-                        <a href="#/house/1">
+                    <li class="house-logo" style="background:  #{{ $house->colour }}">
+                        <a href="{{ route('house', ['id' =>  $house->id]) }}">
                             <img src="/assets/img/houses/{{ $house->image }}" alt="Stark">
                         </a>
 
                     </li>
                     @endforeach
-
 
                 </ul>
             </div>
