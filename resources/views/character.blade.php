@@ -13,9 +13,16 @@
         </div>
     </div>
     <div class="col-4">
-        <div class="avatar" style="background: #{{ $character->houses[0]->colour }};">
+        <?php if(count($character->houses) > 1) : ?>
+        <div class="avatar" style="background: linear-gradient(to right, #{{ $character->houses[0]->colour }} 0%,#{{ $character->houses[0]->colour }}
+                        50%, #{{ $character->houses[1]->colour }} 50%,#{{ $character->houses[1]->colour }} 100%)">
             <img src="/assets/img/{{ $character->image }}" alt="Catelyn">
         </div>
+        <?php else: ?>
+        <div class="avatar" style="background: #{{ $character->houses[0]->colour }}">
+            <img src="/assets/img/{{ $character->image }}" alt="Catelyn">
+        </div>
+        <?php endif ?>
         <div class="infos">
             <h3>Maisons</h3>
 
