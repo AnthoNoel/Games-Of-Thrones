@@ -1,62 +1,24 @@
-# Game of Thrones
+# Encyclopédie de Game of Thrones
 
-Aujourd'hui nous allons réaliser une petite encyclopédie à propos d'un petit bouquin méconnu, mais qui monte. Il parait qu'une série télé est en préparation !
+## Introduction
+Ce projet vise à créer une encyclopédie interactive dédiée à l'univers de Game of Thrones, en utilisant PHP, MySQL, HTML, CSS et le framework Laravel. L'objectif est de fournir une plateforme complète pour explorer les personnages et les maisons de la saga, basée sur une base de données préexistante (`docs/got.sql`).
 
-L'exercice se compose de 4 pages : 
-- La [page d'accueil](docs/screens/home.png) montrant l'ensemble des personnages.
-- La [page personnage](docs/screens/character.png) montrant les informations d'un personnage.
-- La [page des maisons](docs/screens/houses.png) listant les maisons (familles) des personnages.
-- La [page d'une maison](doc/../docs/screens/house.png) montrant les personnages appartenant à une maison donnée.
-  
+## Contenu du Projet
 
-Pour réaliser ces pages, vous aurez besoin des outils suivants : 
-- PHP & MySQL
-- HTML & CSS
-- Laravel
-  
-Un export SQL est fourni dans `docs/got.sql`, il faudra créer une BDD et importer le fichier. Cette base contient déjà toutes les informations, pas besoin de la modifier.
+### Page d'Accueil
+La page d'accueil présente tous les personnages de Game of Thrones, chacun avec un fond coloré correspondant à sa maison. Pour réaliser cela, j'ai configuré une route Laravel pour récupérer et afficher tous les personnages depuis la base de données. Chaque personnage est représenté avec des informations de base comme son nom et son rang.
 
+### Page d'un Personnage
+Sur la page détaillée d'un personnage, accessible via une route spécifique avec un identifiant unique, j'ai mis en place l'affichage du rang du personnage. J'ai également exploré une relation bonus pour afficher les informations sur les parents du personnage.
 
-## Instructions 
+### Liste des Maisons
+Une autre route a été créée pour lister toutes les maisons de Game of Thrones. Chaque maison est associée à une image et un fond coloré distinctif, en fonction de ses attributs définis dans la base de données. En cliquant sur une maison, l'utilisateur est dirigé vers la page spécifique de cette maison.
 
-### Étape 1 : Créer la page d'accueil 
+### Page d'une Maison
+Sur la page d'une maison donnée, je liste tous les personnages qui y sont associés. Cela nécessite l'identification correcte de la maison à partir de la base de données et la liaison avec les personnages correspondants. J'ai également envisagé un bonus pour standardiser l'affichage des listes de personnages à travers le site.
 
-Il faudra pour cela créer une _route_ adéquate et récupérer _tous les personnages_. Le fond coloré de chaque personnage dépend de sa maison. On ne va pas le prendre en compte tout de suite.
+## Finalisation
+Pour terminer le projet, j'ai utilisé les relations établies entre les personnages et les maisons pour mettre à jour la couleur de fond des personnages sur les listes et sur leurs pages individuelles. De plus, j'ai intégré la fonctionnalité permettant d'afficher la liste des maisons auxquelles un personnage est affilié directement dans sa biographie.
 
-### Étape 2 : Créer la page d'un personnage
-
-Pour cette étape, il faudra créer une route récupérant un _identifiant_ du personnage pour charger ses informations. 
-Dans un premier temps, on ne va récupérer que le rang du personnage. Chaque personnage ne peut en avoir qu'un. Il faut donc modifier le _model_ en conséquence.
-
-**Bonus :** On peut déjà récupérer les informations concernant les parents du personnage. C'est aussi une relation du même type que le rang.
-
-### Étape 3 : Lister les maisons
-
-Nouvelle route permettant de récupérer _toutes les maisons_. On va les afficher en utilisant un des attributs du _model_ pour modifier sa couleur de fond. Chaque image de maison doit mener vers la page de la maison en question au clic.
-
-### Étape 4 : Lister les personnages d'une maison
-
-Dans cette nouvelle page, on va lister tous les personnages **appartenant** à cette maison. Il faut donc pouvoir identifier la maison en question et faire le lien avec les personnes. Vous pouvez observer les tables de la BDD pour ça ! 
-
-**Bonus :** Les personnages de cette page se présentent de la même façon que la homepage. Il y a peut-être un moyen de n'écrire qu'un template pour gérer les "listes de personnages" partout sur le site.
-
-### Étape 5 : Finitions 
-
-Maintenant qu'on a établi la relation entre personnage et maison, on va pouvoir l'utiliser : 
-
-- On peut mettre à jour la couleur de fond des personnages sur les listes ou sur la page biographie.
-- On peut faire la liste des maisons d'un personnage dans sa biographie.
-
-
-
-## Par où commencer ?
-
-Voilà quelques pistes pour vous aider : 
-
-- Commencez par installer les dépendances composer 
-- Importer le dump SQL dans le base de donnée
-- Configurez _Laravel_ (`.env`)
-- Il faut penser à coder les _Models_ (cette fois, la base de données ne suit pas les conventions de nommage de _Laravel_, [il faudra donc personnaliser les _Models_](https://laravel.com/docs/8.x/eloquent#table-names))
-- Un personnage peut appartenir à **plusieurs** maisons et une maison possède potentiellement  **plusieurs** personnages
-- Si vous voulez vous concentrer sur PHP et Laravel, HTML et CSS sont déjà fournis dans le dossier `docs/integration`
-- Les images sont déjà prêtes dans le dossier `public/assets/img`
+## Conclusion
+En résumé, ce projet m'a permis de mettre en pratique mes compétences en PHP, Laravel et la gestion de bases de données MySQL pour créer une plateforme interactive et informative sur Game of Thrones. J'ai personnalisé les modèles Laravel pour s'adapter à la structure de la base de données existante et j'ai utilisé HTML et CSS fournis pour intégrer l'interface utilisateur. Les images nécessaires ont été organisées dans le répertoire `public/assets/img`. Ce projet m'a également donné l'opportunité de comprendre et d'appliquer des concepts avancés de gestion de contenu et de relations dans une application web.
